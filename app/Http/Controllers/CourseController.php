@@ -38,6 +38,11 @@ class CourseController extends Controller
 
     public function index()
     {
+        // MASALAH 6 Filter logic dipindahkan ke controller SEBELUMNYA DI courses/index,blde,php
+        $courses = array_filter($this->courses, function($c) {
+            return $c['status'] === 'active';
+        });
+
         return view('courses.index', ['courses' => $this->courses]);
     }
 
